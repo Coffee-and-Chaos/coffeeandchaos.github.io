@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to Coffee & Chaos
 
 You can use the [editor on GitHub](https://github.com/Coffee-and-Chaos/coffeeandchaos.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
