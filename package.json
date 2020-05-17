@@ -1,0 +1,77 @@
+{
+  "name": "microfeedback-github",
+  "private": true,
+  "version": "0.10.0",
+  "description": "An easily-deployable feedback microservice that posts GitHub issues on a given repo",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "start": "micro index.js",
+    "dev": "micro-dev index.js",
+    "test": "npm run lint && NODE_ENV=test GH_REPO=microfeedback/testrepo GH_TOKEN=secret ava",
+    "test:debug": "NODE_ENV=test iron-node ./node_modules/ava/profile.js test.js",
+    "lint": "xo",
+    "release": "np && npm run deploy",
+    "deploy": "now . -e GH_TOKEN=@microfeedback-gh-token -e AKISMET_API_KEY=@akismet-api-key -e PERSPECTIVE_API_KEY=@perspective-api-key -e ALLOWED_REPOS=$(cat allowed_repos.txt) --public && now alias"
+  },
+  "engines": {
+    "node": "8.x.x"
+  },
+  "keywords": [
+    "micro",
+    "microfeedback",
+    "microservice",
+    "feedback",
+    "github",
+    "issues"
+  ],
+  "repository": "https://github.com/microfeedback/microfeedback-github",
+  "author": "Steven Loria",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "axios-mock-adapter": "^1.18.1",
+    "micro-dev": "^3.0.0",
+    "np": "^3.1.0",
+    "xo": "^0.22.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash.trim": "^4.5.1",
+    "markdown-table": "^1.1.3",
+    "micro": "^9.3.4",
+    "microfeedback-core": "^3.0.0",
+    "mustache": "^2.3.2",
+    "parse-github-repo-url": "^1.4.0",
+    "truncate": "^2.1.0",
+    "ua-parser-js": "^0.7.19"
+  },
+  "xo": {
+    "envs": [
+      "node"
+    ],
+    "space": true,
+    "rules": {
+      "no-warning-comments": 0,
+      "new-cap": 0,
+      "camelcase": 0,
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "never"
+        }
+      ]
+    }
+  },
+  "now": {
+    "env": [
+      "GH_TOKEN"
+    ],
+    "alias": "microfeedback-github"
+  }
+}
